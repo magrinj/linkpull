@@ -26,7 +26,8 @@ export const useSupportPrompt = (postCount: number) => {
     ;(async () => {
       try {
         const stored = await browser.storage.local.get(SUPPORT_KEY)
-        const state: SupportState = { ...DEFAULT_STATE, ...stored[SUPPORT_KEY] }
+        const prev = stored[SUPPORT_KEY] as Partial<SupportState> | undefined
+        const state: SupportState = { ...DEFAULT_STATE, ...prev }
 
         // Increment extraction count
         state.extractionCount++
@@ -59,7 +60,8 @@ export const useSupportPrompt = (postCount: number) => {
     setVisible(false)
     try {
       const stored = await browser.storage.local.get(SUPPORT_KEY)
-      const state: SupportState = { ...DEFAULT_STATE, ...stored[SUPPORT_KEY] }
+      const prev = stored[SUPPORT_KEY] as Partial<SupportState> | undefined
+      const state: SupportState = { ...DEFAULT_STATE, ...prev }
       state.lastDismissed = Date.now()
       await browser.storage.local.set({ [SUPPORT_KEY]: state })
     } catch {
@@ -71,7 +73,8 @@ export const useSupportPrompt = (postCount: number) => {
     setVisible(false)
     try {
       const stored = await browser.storage.local.get(SUPPORT_KEY)
-      const state: SupportState = { ...DEFAULT_STATE, ...stored[SUPPORT_KEY] }
+      const prev = stored[SUPPORT_KEY] as Partial<SupportState> | undefined
+      const state: SupportState = { ...DEFAULT_STATE, ...prev }
       state.ratedOrSupported = true
       await browser.storage.local.set({ [SUPPORT_KEY]: state })
     } catch {
