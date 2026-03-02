@@ -79,7 +79,7 @@ export const useExtraction = (settings: Settings) => {
             try {
               await browser.scripting.executeScript({
                 target: { tabId: tab.id },
-                files: ['content-scripts/content.js'],
+                files: ['/content-scripts/content.js'],
               })
               await new Promise((r) => setTimeout(r, 500))
               context = await sendMessage('get-context', undefined, tab.id)
