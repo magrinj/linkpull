@@ -3,7 +3,7 @@
   "description": "Export your LinkedIn posts with impressions, stats, and images. Privacy-first, no server.",
   "private": true,
   "license": "AGPL-3.0-only",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "wxt",
